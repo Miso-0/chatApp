@@ -80,7 +80,13 @@ class ChartView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Column(
-                children: [const Text('data')],
+                children: [
+                  receivedTextCard(context),
+                  senderTextCard(context),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
               ),
               SizedBox(
                 child: Row(
@@ -139,4 +145,114 @@ class ChartView extends StatelessWidget {
       ),
     );
   }
+
+  Row receivedTextCard(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(10, 2, 10, 0),
+          margin: const EdgeInsets.all(10),
+          width: MediaQuery.of(context).size.width * 0.75,
+          // height: 50,
+          decoration: BoxDecoration(
+            color: Colors.grey.shade900,
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(20),
+                bottomRight: Radius.circular(20)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'User text,',
+                    style: GoogleFonts.roboto(
+                      color: Colors.grey.shade300,
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '14:20',
+                        style: GoogleFonts.roboto(
+                          color: Colors.grey.shade300,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+Row senderTextCard(BuildContext context) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+      Container(
+        padding: const EdgeInsets.fromLTRB(10, 2, 10, 0),
+        margin: const EdgeInsets.all(10),
+        width: MediaQuery.of(context).size.width * 0.75,
+        // height: 50,
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 1, 63, 47),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(30),
+            bottomRight: Radius.circular(0),
+            bottomLeft: Radius.circular(20),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'User text,',
+                  style: GoogleFonts.roboto(
+                    color: Colors.grey.shade300,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      '14:20',
+                      style: GoogleFonts.roboto(
+                        color: Colors.grey.shade300,
+                        fontSize: 10,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
 }

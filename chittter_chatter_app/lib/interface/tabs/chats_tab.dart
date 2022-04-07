@@ -16,7 +16,7 @@ class Chats extends StatelessWidget {
         SliverAppBar(
           expandedHeight: MediaQuery.of(context).size.height * 0.23,
           toolbarHeight: 40,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.black,
           pinned: true,
           leading: TextButton(
             onPressed: () {},
