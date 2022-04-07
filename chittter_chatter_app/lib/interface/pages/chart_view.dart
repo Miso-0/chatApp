@@ -2,7 +2,6 @@ import 'package:chittter_chatter_app/interface/utils/resuable_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class ChartView extends StatelessWidget {
   const ChartView({Key? key}) : super(key: key);

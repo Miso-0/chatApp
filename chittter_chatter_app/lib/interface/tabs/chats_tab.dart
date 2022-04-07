@@ -1,7 +1,8 @@
 import 'package:chittter_chatter_app/interface/utils/resuable_const.dart';
 import 'package:chittter_chatter_app/interface/widgets/char_card.dart';
+import 'package:chittter_chatter_app/state/controllers/chats.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -19,7 +20,10 @@ class Chats extends StatelessWidget {
           backgroundColor: Colors.black,
           pinned: true,
           leading: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              var p = Get.put(ChatRoom());
+              // p.testList();
+            },
             child: Text(
               "Edit",
               style: GoogleFonts.roboto(
@@ -126,17 +130,17 @@ class Chats extends StatelessWidget {
     return SliverList(
       delegate: SliverChildListDelegate(
         [
-          ChatCard(),
-          ChatCard(),
-          ChatCard(),
-          ChatCard(),
-          ChatCard(),
-          ChatCard(),
-          ChatCard(),
-          ChatCard(),
-          ChatCard(),
-          ChatCard(),
-          ChatCard(),
+          const ChatCard(),
+          const ChatCard(),
+          const ChatCard(),
+          const ChatCard(),
+          const ChatCard(),
+          const ChatCard(),
+          const ChatCard(),
+          const ChatCard(),
+          const ChatCard(),
+          const ChatCard(),
+          const ChatCard(),
         ],
       ),
     );

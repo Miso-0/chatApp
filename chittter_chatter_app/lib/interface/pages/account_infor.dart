@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:chittter_chatter_app/interface/utils/resuable_const.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
