@@ -11,12 +11,12 @@ class Chats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.transparent,
       body: CustomScrollView(slivers: [
         SliverAppBar(
           expandedHeight: MediaQuery.of(context).size.height * 0.23,
           toolbarHeight: 40,
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.transparent,
           pinned: true,
           leading: TextButton(
             onPressed: () {},

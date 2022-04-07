@@ -1,3 +1,4 @@
+import 'package:chittter_chatter_app/interface/pages/account_infor.dart';
 import 'package:chittter_chatter_app/interface/pages/chart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,8 +19,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/home',
       getPages: [
-        GetPage(name: '/home', page: () => Home()),
-        GetPage(name: '/chatView', page: () => ChartView()),
+        GetPage(name: '/home', page: () => const Home()),
+        GetPage(name: '/chatView', page: () => const ChartView()),
+        GetPage(name: '/accountinfo', page: () => const AccountInfo()),
       ],
     );
   }
