@@ -1,5 +1,6 @@
 import 'package:chittter_chatter_app/interface/utils/resuable_const.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -15,7 +16,7 @@ class ChartView extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: IconButton(
-            onPressed: () {},
+            onPressed: (() => Get.back()),
             icon: const Icon(
               Icons.arrow_back_ios,
               size: 20,
