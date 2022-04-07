@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/home', page: () => const Home()),
         GetPage(name: '/chatView', page: () => const ChartView()),
-        GetPage(name: '/accountinfo', page: () => const AccountInfo()),
+        GetPage(name: '/accountinfo', page: () => AccountInfo()),
       ],
     );
   }

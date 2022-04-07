@@ -21,7 +21,7 @@ class _SettingsState extends State<Settings> {
         slivers: [
           SliverAppBar(
             backgroundColor: Colors.transparent,
-            expandedHeight: MediaQuery.of(context).size.height * 0.15,
+            expandedHeight: MediaQuery.of(context).size.height * 0.1,
             title: Text(
               "Settings",
               style: GoogleFonts.roboto(
@@ -29,15 +29,15 @@ class _SettingsState extends State<Settings> {
                 fontSize: 23,
               ),
             ),
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(
-                "Settings",
-                style: GoogleFonts.roboto(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 23,
-                ),
-              ),
-            ),
+            // flexibleSpace: FlexibleSpaceBar(
+            //   title: Text(
+            //     "Settings",
+            //     style: GoogleFonts.roboto(
+            //       fontWeight: FontWeight.bold,
+            //       fontSize: 23,
+            //     ),
+            //   ),
+            // ),
           ),
           sliverWidgets(),
         ],
