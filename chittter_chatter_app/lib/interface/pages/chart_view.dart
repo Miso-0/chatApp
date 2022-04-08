@@ -25,8 +25,8 @@ class _ChartViewState extends State<ChartView> {
     var args = ModalRoute.of(context)!.settings.arguments as Map;
     var userPhone = args["phone"];
     User user = chatRoomContoller.getContactValid(userPhone);
-    Chat chat = chatRoomContoller.getChatByUser(userPhone) ??
-        chatRoomContoller.createNewChat(userPhone);
+    // Chat chat = chatRoomContoller.getChatByUser(userPhone) ??
+    //     chatRoomContoller.createNewChat(userPhone);
 
     return SafeArea(
       child: Obx(
@@ -102,14 +102,19 @@ class _ChartViewState extends State<ChartView> {
               children: [
                 Expanded(
                   child: ListView.builder(
-                    itemCount: chat.messages.length,
-                    itemBuilder: ((context, index) =>
-                        chat.messages[index].originUserPhone ==
-                                chatRoomContoller.originPhone
-                            ? senderTextCard(
-                                context,
-                              )
-                            : receivedTextCard(context)),
+                    itemCount: chatRoomContoller
+                        .getChatByUser(userPhone)!
+                        .messages
+                        .length,
+                    itemBuilder: ((context, index) => chatRoomContoller
+                                .getChatByUser(userPhone)!
+                                .messages[index]
+                                .originUserPhone ==
+                            chatRoomContoller.originPhone
+                        ? senderTextCard(
+                            context,
+                          )
+                        : receivedTextCard(context)),
                   ),
                 ),
                 const SizedBox(
@@ -183,7 +188,10 @@ class _ChartViewState extends State<ChartView> {
                           onPressed: () {
                             if (contentFieldController.text.isNotEmpty) {
                               chatRoomContoller.modelMessageSend(
-                                  contentFieldController.text, chat.UserPhone);
+                                  contentFieldController.text,
+                                  chatRoomContoller
+                                      .getChatByUser(userPhone)!
+                                      .UserPhone);
                             }
                           },
                           icon: const Icon(

@@ -16,11 +16,12 @@ class LocalContact {
   LocalContact({required this.phone, required this.name});
 }
 
-final String baseUrl = "https://0c27-41-198-134-165.ngrok.io";
+const String baseUrl = "https://0c27-41-198-134-165.ngrok.io";
 
 class ChatRoom extends GetxController {
   var chats = [].obs;
-  var ch = ["User 1", "User 2", "User 3", "User 4"].obs;
+  var b = true.obs;
+  var reversedChatsList = [].obs;
   var originPhone = "0719582572";
 
   var phoneContacts = [
@@ -207,5 +208,11 @@ class ChatRoom extends GetxController {
     var newChat = Chat(UserPhone: userPhone);
     chats.add(newChat);
     return newChat;
+  }
+
+  void reverseChats() {
+    for (int i = chats.length - 1; i >= 0; i--) {
+      reversedChatsList.add(chats[i]);
+    }
   }
 }

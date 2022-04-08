@@ -11,6 +11,7 @@ class Chats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var chatroomController = Get.find<ChatRoom>();
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Obx(
@@ -21,15 +22,15 @@ class Chats extends StatelessWidget {
             backgroundColor: Colors.black,
             pinned: true,
             leading: TextButton(
-              onPressed: () {
-                var p = Get.find<ChatRoom>();
-                p.ch.add("new name");
-              },
-              child: Text(
-                "Edit",
-                style: GoogleFonts.roboto(
-                  color: primaryColor1,
-                  fontSize: 17,
+              onPressed: () {},
+              child: Visibility(
+                visible: chatroomController.b.value,
+                child: Text(
+                  "Edit",
+                  style: GoogleFonts.roboto(
+                    color: primaryColor1,
+                    fontSize: 17,
+                  ),
                 ),
               ),
             ),
@@ -122,17 +123,18 @@ class Chats extends StatelessWidget {
               ),
             ),
           ),
-          sliverWidgets(),
+          sliverWidgets(chatroomController),
         ]),
       ),
     );
   }
 
-  sliverWidgets() {
-    var chatroomController = Get.find<ChatRoom>();
+  sliverWidgets(chatroomController) {
+    chatroomController.reverseChats();
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) => const ChatCard(),
+        (context, index) =>
+            ChatCard(context, chatroomController.reversedChatsList[index]),
         childCount: chatroomController.chats.length,
       ),
     );

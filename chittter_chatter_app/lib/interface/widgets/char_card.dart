@@ -1,13 +1,17 @@
+import 'package:chittter_chatter_app/state/controllers/chats.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../logic/models/chat_model.dart';
+import '../../logic/models/user.dart';
 
 Widget ChatCard(BuildContext context, Chat chat) {
+  var chatRoomController = Get.find<ChatRoom>();
+  var user = chatRoomController.getContactValid(chat.UserPhone);
   return InkWell(
     onTap: (() {
-      Get.toNamed('/chatView');
+      Get.toNamed('/chatView', arguments: {"phone": user.userPhone});
     }),
     child: Container(
       width: MediaQuery.of(context).size.width,
@@ -37,7 +41,7 @@ Widget ChatCard(BuildContext context, Chat chat) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "User Name",
+                        chatRoomController.getContactLocalName(user.userPhone!),
                         style: GoogleFonts.roboto(
                           color: Colors.grey.shade400,
                           fontSize: 17,
