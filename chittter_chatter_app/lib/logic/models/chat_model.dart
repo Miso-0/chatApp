@@ -1,19 +1,16 @@
-import 'package:hive/hive.dart';
+// ignore_for_file: prefer_typing_uninitialized_variables, non_constant_identifier_names
+
+import 'package:get/get.dart';
 
 import 'text_message.dart';
-part 'chat_model.g.dart';
 
-@HiveType(typeId: 0)
-class Chat {
-  @HiveField(0)
-  late int chatID;
-  @HiveField(1)
-  late List<TextMessage> messages;
-  @HiveField(2)
-  late List<TextMessage> unsentmessages;
+class Chat extends GetxController {
+  String UserPhone;
+  var messages;
+  var unsentmessages;
 
-  Chat() {
-    messages = [];
-    unsentmessages = [];
+  Chat({required this.UserPhone}) {
+    messages = [].obs;
+    unsentmessages = [].obs;
   }
 }

@@ -13,135 +13,127 @@ class Chats extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: CustomScrollView(slivers: [
-        SliverAppBar(
-          expandedHeight: MediaQuery.of(context).size.height * 0.23,
-          toolbarHeight: 40,
-          backgroundColor: Colors.black,
-          pinned: true,
-          leading: TextButton(
-            onPressed: () {
-              var p = Get.put(ChatRoom());
-              // p.testList();
-            },
-            child: Text(
-              "Edit",
-              style: GoogleFonts.roboto(
-                color: primaryColor1,
-                fontSize: 17,
+      body: Obx(
+        () => CustomScrollView(slivers: [
+          SliverAppBar(
+            expandedHeight: MediaQuery.of(context).size.height * 0.23,
+            toolbarHeight: 40,
+            backgroundColor: Colors.black,
+            pinned: true,
+            leading: TextButton(
+              onPressed: () {
+                var p = Get.find<ChatRoom>();
+                p.ch.add("new name");
+              },
+              child: Text(
+                "Edit",
+                style: GoogleFonts.roboto(
+                  color: primaryColor1,
+                  fontSize: 17,
+                ),
               ),
             ),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                LineAwesomeIcons.edit,
-                color: primaryColor1,
+            actions: [
+              IconButton(
+                onPressed: () => Get.toNamed('/contacts'),
+                icon: const Icon(
+                  LineAwesomeIcons.edit,
+                  color: primaryColor1,
+                ),
               ),
-            ),
-          ],
-          flexibleSpace: FlexibleSpaceBar(
-            background: Padding(
-              padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    'Chats',
-                    style: GoogleFonts.roboto(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey.shade300,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 35,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade900,
-                        borderRadius: BorderRadius.circular(
-                          10,
-                        ),
+            ],
+            flexibleSpace: FlexibleSpaceBar(
+              background: Padding(
+                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Chats',
+                      style: GoogleFonts.roboto(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade300,
                       ),
-                      child: Row(
-                        children: [
-                          const SizedBox(
-                            width: 5,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade900,
+                          borderRadius: BorderRadius.circular(
+                            10,
                           ),
-                          Icon(
-                            Icons.search,
-                            color: Colors.grey.shade700,
-                            size: 23,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            "Search",
-                            style: GoogleFonts.roboto(
-                              color: Colors.grey.shade700,
-                              fontSize: 16,
+                        ),
+                        child: Row(
+                          children: [
+                            const SizedBox(
+                              width: 5,
                             ),
-                          ),
-                        ],
+                            Icon(
+                              Icons.search,
+                              color: Colors.grey.shade700,
+                              size: 23,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "Search",
+                              style: GoogleFonts.roboto(
+                                color: Colors.grey.shade700,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Broadcast Lists",
-                        style: GoogleFonts.roboto(
-                          color: primaryColor1,
-                          fontSize: 17,
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Broadcast Lists",
+                          style: GoogleFonts.roboto(
+                            color: primaryColor1,
+                            fontSize: 17,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "New Groups",
-                        style: GoogleFonts.roboto(
-                          color: primaryColor1,
-                          fontSize: 17,
+                        Text(
+                          "New Groups",
+                          style: GoogleFonts.roboto(
+                            color: primaryColor1,
+                            fontSize: 17,
+                          ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        sliverWidgets(),
-      ]),
+          sliverWidgets(),
+        ]),
+      ),
     );
   }
 
   sliverWidgets() {
+    var chatroomController = Get.find<ChatRoom>();
     return SliverList(
-      delegate: SliverChildListDelegate(
-        [
-          const ChatCard(),
-          const ChatCard(),
-          const ChatCard(),
-          const ChatCard(),
-          const ChatCard(),
-          const ChatCard(),
-          const ChatCard(),
-          const ChatCard(),
-          const ChatCard(),
-          const ChatCard(),
-          const ChatCard(),
-        ],
+      delegate: SliverChildBuilderDelegate(
+        (context, index) => const ChatCard(),
+        childCount: chatroomController.chats.length,
       ),
     );
   }

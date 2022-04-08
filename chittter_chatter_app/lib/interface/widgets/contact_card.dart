@@ -1,13 +1,17 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:chittter_chatter_app/state/controllers/chats.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../logic/models/chat_model.dart';
+import '../../logic/models/user.dart';
 
-Widget ChatCard(BuildContext context, Chat chat) {
+Widget ContactCard(BuildContext context, User user) {
+  var chatRoom = Get.find<ChatRoom>();
   return InkWell(
     onTap: (() {
-      Get.toNamed('/chatView');
+      Get.toNamed('/chatView', arguments: {"phone": user.userPhone});
     }),
     child: Container(
       width: MediaQuery.of(context).size.width,
@@ -20,8 +24,9 @@ Widget ChatCard(BuildContext context, Chat chat) {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CircleAvatar(
-              radius: 30,
+              radius: 26,
               backgroundColor: Colors.grey.shade700,
+              backgroundImage: NetworkImage(user.photoUrl!),
             ),
             const SizedBox(
               width: 10,
@@ -31,24 +36,17 @@ Widget ChatCard(BuildContext context, Chat chat) {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.75,
+                  width: MediaQuery.of(context).size.width * 0.70,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "User Name",
+                        chatRoom.getContactLocalName(user.userPhone!),
                         style: GoogleFonts.roboto(
                           color: Colors.grey.shade400,
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "01:38",
-                        style: GoogleFonts.roboto(
-                          color: Colors.grey.shade400,
-                          fontSize: 12,
                         ),
                       ),
                     ],
@@ -59,7 +57,7 @@ Widget ChatCard(BuildContext context, Chat chat) {
                   child: Wrap(
                     children: [
                       Text(
-                        "recent text recent textrecent text rececent text recent text recent text",
+                        'about',
                         style: GoogleFonts.roboto(
                           color: Colors.grey.shade400,
                           fontSize: 12,

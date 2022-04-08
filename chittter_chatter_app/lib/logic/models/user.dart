@@ -3,30 +3,32 @@
 //     final user = userFromMap(jsonString);
 import 'dart:convert';
 
-User userFromMap(String str) => User.fromMap(json.decode(str));
+List<User> userFromMap(String str) =>
+    List<User>.from(json.decode(str).map((x) => User.fromMap(x)));
 
-String userToMap(User data) => json.encode(data.toMap());
+String userToMap(List<User> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
 
 class User {
   User({
-    required this.userPhone,
-    required this.userName,
-    required this.photoUrl,
+    this.userPhone,
+    this.userName,
+    this.photoUrl,
   });
 
-  String userPhone;
-  String userName;
-  String photoUrl;
+  String? userPhone;
+  String? userName;
+  String? photoUrl;
 
   factory User.fromMap(Map<String, dynamic> json) => User(
-        userPhone: json["userPhone"],
-        userName: json["userName"],
+        userPhone: json["UserPhone"],
+        userName: json["UserName"],
         photoUrl: json["photoUrl"],
       );
 
   Map<String, dynamic> toMap() => {
-        "userPhone": userPhone,
-        "userName": userName,
+        "UserPhone": userPhone,
+        "UserName": userName,
         "photoUrl": photoUrl,
       };
 }
