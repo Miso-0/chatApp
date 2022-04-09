@@ -2,8 +2,6 @@
 
 import 'package:get/get.dart';
 
-import 'text_message.dart';
-
 class Chat extends GetxController {
   String UserPhone;
   var messages;

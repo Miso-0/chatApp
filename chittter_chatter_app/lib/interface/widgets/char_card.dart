@@ -4,9 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../logic/models/chat_model.dart';
-import '../../logic/models/user.dart';
 
-Widget ChatCard(BuildContext context, Chat chat) {
+Widget chatCard(BuildContext context, Chat chat) {
   var chatRoomController = Get.find<ChatRoom>();
   var user = chatRoomController.getContactValid(chat.UserPhone);
   return InkWell(

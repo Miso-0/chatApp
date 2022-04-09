@@ -1,6 +1,7 @@
 import 'package:chittter_chatter_app/interface/pages/account_infor.dart';
 import 'package:chittter_chatter_app/interface/pages/chart_view.dart';
 import 'package:chittter_chatter_app/interface/pages/contacts.dart';
+import 'package:chittter_chatter_app/interface/pages/splash.dart';
 import 'package:chittter_chatter_app/state/bindings/bindings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,8 +21,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: Binder(),
-      initialRoute: '/home',
+      initialRoute: '/splash',
       getPages: [
+        GetPage(name: '/splash', page: () => Splash()),
         GetPage(name: '/home', page: () => const Home()),
         GetPage(name: '/chatView', page: () => const ChartView()),
         GetPage(name: '/accountinfo', page: () => AccountInfo()),

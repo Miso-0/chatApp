@@ -62,12 +62,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
         ),
         body: Center(
-          child: TabBarView(controller: _tabController, children: const [
-            Status(),
-            Calls(),
-            Camera(),
+          child: TabBarView(controller: _tabController, children: [
+            const Status(),
+            const Calls(),
+            const Camera(),
             Chats(),
-            Settings(),
+            const Settings(),
           ]),
         ),
       ),

@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:chittter_chatter_app/logic/models/text_message.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 
 import '../../logic/models/chat_model.dart';
@@ -16,13 +15,14 @@ class LocalContact {
   LocalContact({required this.phone, required this.name});
 }
 
-const String baseUrl = "https://0c27-41-198-134-165.ngrok.io";
+const String baseUrl = "https://8791-41-198-134-165.ngrok.io";
 
 class ChatRoom extends GetxController {
   var chats = [].obs;
   var b = true.obs;
   var reversedChatsList = [].obs;
   var originPhone = "0719582572";
+  late User orginUser;
 
   var phoneContacts = [
     LocalContact(phone: "0719582574", name: 'Oupa'),
@@ -36,6 +36,7 @@ class ChatRoom extends GetxController {
   @override
   void onInit() {
     //
+    init();
     getContacts();
     super.onInit();
   }
@@ -145,6 +146,60 @@ class ChatRoom extends GetxController {
       var newChat = Chat(UserPhone: dest);
       newChat.messages.add(message);
       chats.add(newChat);
+    }
+  }
+
+  void setOriginUser(User user) {
+    orginUser = user;
+  }
+
+  /*first check if the user is registered if they are not registerd the otherwise sign them in
+    take the orignPhone number and assgin it to the userPhone variable
+  */
+  var getAllInfo = false.obs;
+  Future<void> authenticateUser(User user) async {
+    try {
+      String url =
+          baseUrl + "/chat/users/userPhone?userPhone=" + user.userPhone!;
+      var response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        if (response.body != "[]") {
+          for (User u in userFromMap(response.body)) {
+            setOriginUser(u);
+          }
+        } else {
+          registerUser(user);
+        }
+      }
+    } catch (e) {
+      // send report to support software with details
+      print("Something went wrong");
+    }
+  }
+
+  //send an http post to register the user to system
+  //whem called upon
+  Future<void> registerUser(User user) async {
+    try {
+      String url = baseUrl + "/chat/users";
+      var request = await http.post(
+        Uri.parse(url),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: json.encode(
+          user.toMap(),
+        ),
+      );
+      if (request.statusCode == 200) {
+        if (request.body == "1") {
+          setOriginUser(user);
+          Get.toNamed('/home');
+        }
+      }
+    } catch (e) {
+      // send report to support software with details
+      print("Something went wrong");
     }
   }
 

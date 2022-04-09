@@ -27,8 +27,8 @@ class User {
       );
 
   Map<String, dynamic> toMap() => {
-        "UserPhone": userPhone,
-        "UserName": userName,
+        "userPhone": userPhone,
+        "userName": userName,
         "photoUrl": photoUrl,
       };
 }
